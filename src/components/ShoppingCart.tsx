@@ -18,9 +18,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { ShoppingCart as CartIcon, Trash2, Minus, Plus, Gift } from 'lucide-react';
+import { ShoppingCart as CartIcon, Trash2, Minus, Plus, Gift, Loader2 } from 'lucide-react';
 import { useCart, DeliveryZone } from '@/contexts/CartContext';
 import { formatVND } from '@/lib/utils/format';
+import { supabase } from '@/integrations/supabase/client';
+import { useState } from 'react';
+import { toast } from '@/hooks/use-toast';
 
 const deliveryZones: { value: DeliveryZone; label_ru: string; label_en: string; label_zh: string; label_vi: string; fee: number }[] = [
   { value: 'north', label_ru: 'Север', label_en: 'North', label_zh: '北部', label_vi: 'Bắc', fee: 20000 },
@@ -43,10 +46,58 @@ export const ShoppingCart = () => {
     updateQuantity,
     removeFromCart,
     setDeliveryZone,
-    setFloorDelivery
+    setFloorDelivery,
+    clearCart
   } = useCart();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const hasGift = total >= 500000;
+
+  const handleCheckout = async () => {
+    if (items.length === 0) return;
+
+    setIsSubmitting(true);
+    try {
+      // Prepare order data
+      const orderData = {
+        items: items.map(item => ({
+          name: item.dish[`name_${lang}`],
+          quantity: item.quantity,
+          price: item.dish.price,
+          subtotal: item.subtotal
+        })),
+        subtotal,
+        deliveryFee,
+        total,
+        deliveryZone: deliveryZones.find(z => z.value === deliveryZone)?.[`label_${lang}`] || deliveryZone,
+        floorDelivery
+      };
+
+      // Send order to Telegram via edge function
+      const { data, error } = await supabase.functions.invoke('send-order', {
+        body: orderData
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: t('order_success_title'),
+        description: t('order_success_message'),
+      });
+
+      // Clear cart after successful order
+      clearCart();
+    } catch (error) {
+      console.error('Error sending order:', error);
+      toast({
+        title: t('order_error_title'),
+        description: t('order_error_message'),
+        variant: 'destructive'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -196,9 +247,18 @@ export const ShoppingCart = () => {
               {/* Checkout Button */}
               <Button 
                 size="lg" 
+                onClick={handleCheckout}
+                disabled={isSubmitting || items.length === 0}
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-6"
               >
-                {t('checkout')}
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    {t('sending_order')}
+                  </>
+                ) : (
+                  t('checkout')
+                )}
               </Button>
             </div>
           )}

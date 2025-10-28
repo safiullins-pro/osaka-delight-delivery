@@ -74,7 +74,7 @@ export const Location = () => {
               className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
             >
               <a 
-                href="https://maps.app.goo.gl/7SDWSQUbVtxtb3YQ6" 
+                href="https://maps.app.goo.gl/D9u7VMnfemcnsq517" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -88,7 +88,7 @@ export const Location = () => {
           <div className="relative">
             <div className="rounded-2xl overflow-hidden shadow-elegant">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3898.7!2d109.19!3d12.25!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDE1JzAwLjAiTiAxMDnCsDExJzI0LjAiRQ!5e0!3m2!1sen!2s!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3899.008732796726!2d109.22152407584896!3d12.254836487996658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDE1JzE3LjQiTiAxMDnCsDEzJzI0LjYiRQ!5e0!3m2!1sen!2s!4v1735000000000!5m2!1sen!2s"
                 width="100%"
                 height="500"
                 style={{ border: 0 }}

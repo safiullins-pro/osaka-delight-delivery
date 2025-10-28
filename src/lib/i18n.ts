@@ -43,6 +43,11 @@ const resources = {
       delivery: "Доставка",
       total: "Итого",
       checkout: "Оформить заказ",
+      sending_order: "Отправка заказа...",
+      order_success_title: "Заказ отправлен!",
+      order_success_message: "Мы получили ваш заказ и скоро свяжемся с вами",
+      order_error_title: "Ошибка",
+      order_error_message: "Не удалось отправить заказ. Попробуйте еще раз",
       
       gift_alert: "🎁 Подарок Яки краб в подарок!",
       
@@ -106,6 +111,11 @@ const resources = {
       delivery: "Delivery",
       total: "Total",
       checkout: "Checkout",
+      sending_order: "Sending order...",
+      order_success_title: "Order sent!",
+      order_success_message: "We received your order and will contact you soon",
+      order_error_title: "Error",
+      order_error_message: "Failed to send order. Please try again",
       
       gift_alert: "🎁 Yaki crab as a gift!",
       
@@ -166,6 +176,11 @@ const resources = {
       delivery: "配送",
       total: "总计",
       checkout: "结账",
+      sending_order: "发送订单中...",
+      order_success_title: "订单已发送！",
+      order_success_message: "我们已收到您的订单，很快会与您联系",
+      order_error_title: "错误",
+      order_error_message: "发送订单失败，请重试",
       
       gift_alert: "🎁 赠送烤蟹！",
       
@@ -226,6 +241,11 @@ const resources = {
       delivery: "Giao hàng",
       total: "Tổng cộng",
       checkout: "Thanh toán",
+      sending_order: "Đang gửi đơn hàng...",
+      order_success_title: "Đơn hàng đã gửi!",
+      order_success_message: "Chúng tôi đã nhận đơn hàng và sẽ liên hệ với bạn sớm",
+      order_error_title: "Lỗi",
+      order_error_message: "Không thể gửi đơn hàng. Vui lòng thử lại",
       
       gift_alert: "🎁 Tặng Yaki crab!",
       
