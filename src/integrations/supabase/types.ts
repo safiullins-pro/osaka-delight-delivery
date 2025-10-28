@@ -14,7 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      orders: {
+        Row: {
+          created_at: string
+          delivery_fee: number
+          delivery_zone: string
+          floor_delivery: boolean
+          id: string
+          items: Json
+          status: string
+          subtotal: number
+          telegram_error: string | null
+          telegram_sent: boolean
+          total: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          delivery_fee: number
+          delivery_zone: string
+          floor_delivery?: boolean
+          id?: string
+          items: Json
+          status?: string
+          subtotal: number
+          telegram_error?: string | null
+          telegram_sent?: boolean
+          total: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          delivery_fee?: number
+          delivery_zone?: string
+          floor_delivery?: boolean
+          id?: string
+          items?: Json
+          status?: string
+          subtotal?: number
+          telegram_error?: string | null
+          telegram_sent?: boolean
+          total?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
